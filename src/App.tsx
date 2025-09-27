@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
-import CommentsSection from './components/CommentsSection';
 import InsightsSection from './components/InsightsSection';
 import RecommendationsSection from './components/RecommendationsSection';
 import HowWeBuiltThis from './components/HowWeBuiltThis';
@@ -25,12 +24,6 @@ function App() {
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-primary"
                   >
                     Dashboard
-                  </Link>
-                  <Link
-                    to="/comments"
-                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-primary"
-                  >
-                    Comments
                   </Link>
                   <Link
                     to="/insights"
@@ -69,7 +62,6 @@ function App() {
         {/* Routes */}
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/comments" element={<CommentsSection />} />
           <Route path="/insights" element={<InsightsSection />} />
           <Route path="/recommendations" element={<RecommendationsSection />} />
           <Route path="/how-we-built-this" element={<HowWeBuiltThis />} />

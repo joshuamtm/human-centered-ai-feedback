@@ -71,7 +71,6 @@ const Dashboard: React.FC = () => {
               <h3 className="font-semibold text-gray-800 mb-2">How to Navigate</h3>
               <ul className="text-sm text-gray-700 space-y-1">
                 <li>• <strong>Dashboard (You are here):</strong> Overview of ratings, response rates, and trends</li>
-                <li>• <strong>Comments:</strong> Browse all participant feedback with sentiment filters</li>
                 <li>• <strong>Insights:</strong> Discover key themes and patterns from qualitative analysis</li>
                 <li>• <strong>Recommendations:</strong> View prioritized improvements based on feedback</li>
                 <li>• <strong>How We Built This:</strong> Learn about the AI technology behind this dashboard</li>
@@ -83,9 +82,8 @@ const Dashboard: React.FC = () => {
               <ol className="text-sm text-gray-700 space-y-2">
                 <li><span className="font-semibold text-primary">1.</span> Review the metrics below for overall course health</li>
                 <li><span className="font-semibold text-primary">2.</span> Scroll down to see session-specific breakdowns</li>
-                <li><span className="font-semibold text-primary">3.</span> Click "Comments" to read detailed feedback</li>
-                <li><span className="font-semibold text-primary">4.</span> Visit "Insights" for AI-generated analysis</li>
-                <li><span className="font-semibold text-primary">5.</span> Check "Recommendations" for improvement ideas</li>
+                <li><span className="font-semibold text-primary">3.</span> Visit "Insights" for AI-generated analysis and key quotes</li>
+                <li><span className="font-semibold text-primary">4.</span> Check "Recommendations" for improvement ideas</li>
               </ol>
 
               <div className="mt-3 p-3 bg-white rounded border border-gray-200">

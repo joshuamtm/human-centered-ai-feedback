@@ -110,14 +110,34 @@ const InsightsSection: React.FC = () => {
 
           {/* Key Quotes from Session 1 */}
           <div className="bg-blue-50 rounded-lg p-6 mt-6">
-            <h3 className="font-semibold mb-3">Representative Feedback</h3>
+            <h3 className="font-semibold mb-3">Representative Feedback Reflecting Key Trends</h3>
             <div className="space-y-3">
-              <blockquote className="italic text-gray-700 border-l-4 border-primary pl-4">
-                "I feel much more interested in AI in general now!"
-              </blockquote>
-              <blockquote className="italic text-gray-700 border-l-4 border-accent pl-4">
-                "Great high level overview and context setting. Appreciated the visuals and metaphors to build understanding."
-              </blockquote>
+              <div className="mb-3">
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Positive Impact</p>
+                <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4">
+                  "I feel much more interested in AI in general now!"
+                </blockquote>
+                <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4 mt-2">
+                  "I am excited about how to apply these principles specifically to not for profits."
+                </blockquote>
+              </div>
+
+              <div className="mb-3">
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Teaching Effectiveness</p>
+                <blockquote className="italic text-gray-700 border-l-4 border-primary pl-4">
+                  "Great high level overview and context setting. Appreciated the visuals and metaphors to build understanding."
+                </blockquote>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Common Challenge (Pacing)</p>
+                <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4">
+                  "As an AI newby you glossed over some info I would have liked more time to absorb."
+                </blockquote>
+                <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4 mt-2">
+                  "I'm very new to all of this, so it was pretty fast-paced."
+                </blockquote>
+              </div>
             </div>
           </div>
         </section>
@@ -154,14 +174,34 @@ const InsightsSection: React.FC = () => {
 
           {/* Key Quotes from Session 2 */}
           <div className="bg-blue-50 rounded-lg p-6 mt-6">
-            <h3 className="font-semibold mb-3">Representative Feedback</h3>
+            <h3 className="font-semibold mb-3">Representative Feedback Reflecting Key Trends</h3>
             <div className="space-y-3">
-              <blockquote className="italic text-gray-700 border-l-4 border-primary pl-4">
-                "I appreciated all the practical application tools and demos"
-              </blockquote>
-              <blockquote className="italic text-gray-700 border-l-4 border-accent pl-4">
-                "Loved how pragmatic it was--will immediately apply what I learned!"
-              </blockquote>
+              <div className="mb-3">
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Practical Value</p>
+                <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4">
+                  "I appreciated all the practical application tools and demos"
+                </blockquote>
+                <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4 mt-2">
+                  "Loved how pragmatic it was--will immediately apply what I learned!"
+                </blockquote>
+              </div>
+
+              <div className="mb-3">
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Framework Effectiveness</p>
+                <blockquote className="italic text-gray-700 border-l-4 border-primary pl-4">
+                  "I'm appreciating using TRACE to identify pain points, COMPAS to frame the goal and CRAFT to write a prompt"
+                </blockquote>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Session Length Concern</p>
+                <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4">
+                  "I wish it was longer! It felt like we really got into a good flow and then next thing you know it was wrapping up!"
+                </blockquote>
+                <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4 mt-2">
+                  "One thought is that 1 hour feels tight to get through everything without having to rush."
+                </blockquote>
+              </div>
             </div>
           </div>
         </section>

@@ -10,7 +10,6 @@ headers = []
 publish = "/Users/joshua/human-centered-ai-feedback/build"
 publishOrigin = "config"
 commandOrigin = "config"
-base = "/Users/joshua/human-centered-ai-feedback"
 command = "CI=false npm run build"
 
 [build.environment]
