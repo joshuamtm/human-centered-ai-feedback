@@ -18,10 +18,19 @@ const HowWeBuiltThis: React.FC = () => {
               This dashboard demonstrates practical AI application for nonprofit organizations. We built it to showcase
               real-time feedback analysis while teaching AI concepts through implementation.
             </p>
-            <p className="text-gray-700">
+            <p className="text-gray-700 mb-4">
               The dashboard serves dual purposes: improving course quality through transparency and demonstrating
               AI-powered analytics capabilities to our learners.
             </p>
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
+              <p className="text-sm text-gray-700">
+                <strong>📄 Planning Document:</strong> View the complete{' '}
+                <a href="/product-requirements-document.md" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                  Product Requirements Document
+                </a>{' '}
+                that guided this project from conception to implementation.
+              </p>
+            </div>
           </section>
 
           <section className="bg-white rounded-lg shadow p-8 mb-6">
@@ -121,8 +130,10 @@ Return as JSON.`}
                 </a>
               </li>
               <li>
-                <a href="/feedback-dashboard-prd.md"
-                   className="text-primary hover:underline">
+                <a href="/product-requirements-document.md"
+                   className="text-primary hover:underline"
+                   target="_blank"
+                   rel="noopener noreferrer">
                   Product Requirements Document
                 </a>
               </li>
