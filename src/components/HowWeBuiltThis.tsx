@@ -113,9 +113,11 @@ Return as JSON.`}
                 </a>
               </li>
               <li>
-                <a href="https://github.com/your-repo/feedback-dashboard"
-                   className="text-primary hover:underline">
-                  GitHub Repository (Coming Soon)
+                <a href="https://github.com/joshuamtm/human-centered-ai-feedback"
+                   className="text-primary hover:underline"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  GitHub Repository
                 </a>
               </li>
               <li>
