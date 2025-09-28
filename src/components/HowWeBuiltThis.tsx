@@ -13,7 +13,17 @@ const HowWeBuiltThis: React.FC = () => {
 
         <div className="prose prose-lg max-w-none">
           <section className="bg-white rounded-lg shadow p-8 mb-6">
-            <h2 className="text-2xl font-bold mb-4">Overview</h2>
+            <h2 className="text-2xl font-bold mb-4">Built with "Vibe-Coding"</h2>
+            <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-l-4 border-purple-500 p-6 mb-6">
+              <p className="text-gray-800 mb-3">
+                <strong>🚀 100% Built with VSCode + Claude Code</strong>
+              </p>
+              <p className="text-gray-700">
+                This entire dashboard was created using "vibe-coding" - a revolutionary approach where AI and human
+                developers collaborate seamlessly. No traditional coding was required; instead, we used natural
+                language conversations with Claude Code directly in VSCode to build every feature.
+              </p>
+            </div>
             <p className="text-gray-700 mb-4">
               This dashboard demonstrates practical AI application for nonprofit organizations. We built it to showcase
               real-time feedback analysis while teaching AI concepts through implementation.
@@ -30,6 +40,43 @@ const HowWeBuiltThis: React.FC = () => {
                 </a>{' '}
                 that guided this project from conception to implementation.
               </p>
+            </div>
+          </section>
+
+          <section className="bg-white rounded-lg shadow p-8 mb-6">
+            <h2 className="text-2xl font-bold mb-4">The PRP Methodology</h2>
+            <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-4">
+              <p className="text-gray-800 mb-3">
+                <strong>📝 Product Requirements Prompt (PRP)</strong>
+              </p>
+              <p className="text-gray-700 mb-4">
+                We didn't start with traditional technical specifications. Instead, we used a Product Requirements Prompt (PRP)
+                - a conversational framework that walks through all the essential questions to understand what needs to be built
+                and who it serves.
+              </p>
+              <p className="text-gray-700 mb-4">
+                The PRP process guided us through:
+              </p>
+              <ul className="list-disc ml-6 space-y-1 text-gray-700 mb-4">
+                <li>Mission & problem context</li>
+                <li>User needs and access requirements</li>
+                <li>Core user journey mapping</li>
+                <li>MVP feature prioritization</li>
+                <li>Data & content structure</li>
+                <li>Success metrics definition</li>
+              </ul>
+              <p className="text-gray-700 mb-4">
+                This conversational approach transformed stakeholder discussions into a comprehensive Product Requirements
+                Document (PRD), which then served as the blueprint for Claude Code to build the entire application.
+              </p>
+              <a
+                href="/mtm-prp-generator.md"
+                className="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View the PRP Generator Framework →
+              </a>
             </div>
           </section>
 
@@ -137,6 +184,14 @@ Return as JSON.`}
                   Product Requirements Document
                 </a>
               </li>
+              <li>
+                <a href="/mtm-prp-generator.md"
+                   className="text-primary hover:underline"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  PRP Generator Framework
+                </a>
+              </li>
             </ul>
           </section>
 
@@ -146,6 +201,16 @@ Return as JSON.`}
               This dashboard is open source! You can fork our code and adapt it for your organization's training
               programs. We encourage nonprofits to use these tools for continuous improvement.
             </p>
+            <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 my-4">
+              <p className="text-gray-700 mb-2">
+                <strong>🎯 Start with the PRP Generator!</strong>
+              </p>
+              <p className="text-gray-700">
+                Don't know where to begin? Use our Product Requirements Prompt (PRP) generator to walk through the
+                essential questions, then feed the resulting PRD to Claude Code in VSCode. You'll be "vibe-coding"
+                your own dashboard in no time!
+              </p>
+            </div>
             <p className="text-gray-700">
               If you have questions or want to share your implementation, reach out to the course instructors
               or post in our learning community.
