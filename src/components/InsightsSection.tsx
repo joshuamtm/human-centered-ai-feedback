@@ -1,5 +1,6 @@
 import React from 'react';
 import { allFeedbackData, calculateSentiment } from '../data/sessionData';
+import PreCourseSessionConnections from './PreCourseSessionConnections';
 
 const InsightsSection: React.FC = () => {
   // Process data with sentiment
@@ -239,6 +240,12 @@ const InsightsSection: React.FC = () => {
               material, suggesting a need for differentiated learning paths or supplementary resources.
             </p>
           </div>
+        </section>
+
+        {/* Pre-Course to Session Connections */}
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold mb-6">Pre-Course Expectations vs. Session Delivery</h2>
+          <PreCourseSessionConnections />
         </section>
       </div>
     </div>

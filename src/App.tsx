@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard';
 import InsightsSection from './components/InsightsSection';
 import RecommendationsSection from './components/RecommendationsSection';
 import HowWeBuiltThis from './components/HowWeBuiltThis';
+import PreCourseAnalysis from './components/PreCourseAnalysis';
 import './App.css';
 
 function App() {
@@ -24,6 +25,12 @@ function App() {
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-primary"
                   >
                     Dashboard
+                  </Link>
+                  <Link
+                    to="/pre-course"
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-primary"
+                  >
+                    Pre-Course Analysis
                   </Link>
                   <Link
                     to="/insights"
@@ -62,6 +69,7 @@ function App() {
         {/* Routes */}
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/pre-course" element={<PreCourseAnalysis />} />
           <Route path="/insights" element={<InsightsSection />} />
           <Route path="/recommendations" element={<RecommendationsSection />} />
           <Route path="/how-we-built-this" element={<HowWeBuiltThis />} />
