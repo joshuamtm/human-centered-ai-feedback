@@ -42,9 +42,28 @@ const InsightsSection: React.FC = () => {
     ],
   };
 
+  // Key themes from Session 3
+  const session3Themes = {
+    positive: [
+      "Ethics content extremely helpful for organizations",
+      "Improved pacing - much more manageable",
+      "Trolley problem tool is memorable and useful",
+      "Better chat management (waiting until end)",
+      "Tools help frame decision-making around AI use",
+    ],
+    concerns: [
+      "Topics audience wanted didn't get adequate time",
+      "Delay between chat and live conversation",
+      "Need more critical perspectives on AI ethics",
+      "Still seeking practical implementation guidance",
+      "Resource/acronym overload becoming confusing",
+    ],
+  };
+
   // Calculate key metrics
   const session1Comments = dataWithComments.filter((d) => d.session === 1);
   const session2Comments = dataWithComments.filter((d) => d.session === 2);
+  const session3Comments = dataWithComments.filter((d) => d.session === 3);
 
   const session1Positive = session1Comments.filter(
     (d) => d.sentiment === "positive",
@@ -52,6 +71,12 @@ const InsightsSection: React.FC = () => {
   const session2Positive = session2Comments.filter(
     (d) => d.sentiment === "positive",
   ).length;
+  const session3Positive = session3Comments.filter(
+    (d) => d.sentiment === "positive",
+  ).length;
+
+  const totalComments = session1Comments.length + session2Comments.length + session3Comments.length;
+  const totalPositive = session1Positive + session2Positive + session3Positive;
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
@@ -72,20 +97,20 @@ const InsightsSection: React.FC = () => {
             <div>
               <p className="text-3xl font-bold">
                 {(
-                  ((session1Positive + session2Positive) /
-                    (session1Comments.length + session2Comments.length)) *
-                  100
+                  (totalPositive / totalComments) * 100
                 ).toFixed(0)}
                 %
               </p>
               <p className="text-sm opacity-90">Positive Sentiment Overall</p>
             </div>
             <div>
-              <p className="text-3xl font-bold">3.4/4.0</p>
+              <p className="text-3xl font-bold">
+                {(processedData.reduce((sum, e) => sum + e.rating, 0) / processedData.length).toFixed(1)}/4.0
+              </p>
               <p className="text-sm opacity-90">Average Course Rating</p>
             </div>
             <div>
-              <p className="text-3xl font-bold">82%</p>
+              <p className="text-3xl font-bold">85%</p>
               <p className="text-sm opacity-90">Would Apply Learnings</p>
             </div>
           </div>
@@ -93,9 +118,10 @@ const InsightsSection: React.FC = () => {
 
         {/* Session 1 Insights */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">
-            Session 1: Introduction & Context
-          </h2>
+          <h2 className="text-2xl font-bold mb-2">Session 1</h2>
+          <p className="text-lg text-gray-600 mb-6">
+            The Current State of AI – Where We Are and How We Got Here
+          </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg shadow p-6">
@@ -174,9 +200,10 @@ const InsightsSection: React.FC = () => {
 
         {/* Session 2 Insights */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">
-            Session 2: Practical Application
-          </h2>
+          <h2 className="text-2xl font-bold mb-2">Session 2</h2>
+          <p className="text-lg text-gray-600 mb-6">
+            What You Can Do with AI Right Now (No Expertise Required)
+          </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg shadow p-6">
@@ -248,6 +275,85 @@ const InsightsSection: React.FC = () => {
                 <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4 mt-2">
                   "One thought is that 1 hour feels tight to get through
                   everything without having to rush."
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Session 3 Insights */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-2">Session 3</h2>
+          <p className="text-lg text-gray-600 mb-6">
+            Ethics, Implications, and Disruptions of AI
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="bg-white rounded-lg shadow p-6">
+              <h3 className="text-lg font-semibold mb-4 text-green-700">
+                What's Working Well
+              </h3>
+              <ul className="space-y-2">
+                {session3Themes.positive.map((theme, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-gray-700">{theme}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-lg shadow p-6">
+              <h3 className="text-lg font-semibold mb-4 text-orange-700">
+                Areas for Improvement
+              </h3>
+              <ul className="space-y-2">
+                {session3Themes.concerns.map((concern, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-orange-500 mr-2">!</span>
+                    <span className="text-gray-700">{concern}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Key Quotes from Session 3 */}
+          <div className="bg-blue-50 rounded-lg p-6 mt-6">
+            <h3 className="font-semibold mb-3">
+              Representative Feedback Reflecting Key Trends
+            </h3>
+            <div className="space-y-3">
+              <div className="mb-3">
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Ethics Impact
+                </p>
+                <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4">
+                  "Very good explanation on ethics issues and approaches. Extremely helpful to our organization!"
+                </blockquote>
+                <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4 mt-2">
+                  "very thought provoking, many things I want to share with our team"
+                </blockquote>
+              </div>
+
+              <div className="mb-3">
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Improved Pacing
+                </p>
+                <blockquote className="italic text-gray-700 border-l-4 border-primary pl-4">
+                  "The pace was much more manageable for me, thank you!"
+                </blockquote>
+                <blockquote className="italic text-gray-700 border-l-4 border-primary pl-4 mt-2">
+                  "Thank you for not engaging with the chat during the session and waiting until the end to answer questions. It was so much easier to follow along and understand."
+                </blockquote>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Practical Application Need
+                </p>
+                <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4">
+                  "I still don't know how to use AI. There are examples of how to use it - grant prospecting, report creation, etc. I have no idea how to actually make, like a finance report from information for several spreadsheets."
                 </blockquote>
               </div>
             </div>

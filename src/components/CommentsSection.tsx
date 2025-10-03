@@ -70,6 +70,7 @@ const CommentsSection: React.FC = () => {
                 <option value="">All Sessions</option>
                 <option value="1">Session 1</option>
                 <option value="2">Session 2</option>
+                <option value="3">Session 3</option>
               </select>
             </div>
 

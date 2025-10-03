@@ -20,29 +20,29 @@ const RecommendationsSection: React.FC = () => {
     {
       priority: "High",
       category: "Session Structure",
-      title: "Extend Session Duration",
+      title: "Balance Content Depth with Time Constraints",
       description:
-        "Consider moving to 75-90 minute sessions to allow for deeper exploration",
+        "Ensure adequate time for topics participants want to explore while respecting 1-hour format",
       actions: [
-        "Poll participants about preferred session length",
-        "Test 75-minute format for Sessions 3-4",
-        "Build in 5-minute breaks for longer sessions",
-        "Adjust content density based on new timing",
+        "Survey participants before sessions on priority topics",
+        "Limit scope of each session to 2-3 key concepts",
+        "Allocate specific time blocks for audience-requested topics",
+        "Create follow-up resources for deeper dives",
       ],
-      impact: "Multiple participants explicitly requested longer sessions",
+      impact: "Session 3 feedback indicates topics didn't get adequate coverage",
     },
     {
-      priority: "Medium",
+      priority: "High",
       category: "Interactive Elements",
-      title: "Optimize Chat Management",
-      description: "Balance real-time engagement with presentation flow",
+      title: "Continue Refined Chat Management Approach",
+      description: "Session 3 approach (waiting until end) was highly appreciated - maintain this",
       actions: [
-        "Designate specific Q&A segments (every 15 minutes)",
-        "Have a co-facilitator manage chat questions",
-        "Use a question parking lot for complex queries",
-        "Provide written FAQ after each session",
+        "Continue holding questions until session end",
+        "Reduce live chat lag by upgrading streaming setup",
+        "Ensure all participant objectives shared in chat are acknowledged",
+        "Create visual indicator when transitioning to Q&A time",
       ],
-      impact: "Reduces disruption while maintaining engagement",
+      impact: "Session 3: Multiple participants praised new chat management approach",
     },
     {
       priority: "Medium",
@@ -60,31 +60,45 @@ const RecommendationsSection: React.FC = () => {
     },
     {
       priority: "Medium",
-      category: "Security & Ethics",
-      title: "Deepen Confidentiality Discussion",
+      category: "Ethics & Critical Thinking",
+      title: "Expand Critical Perspectives on AI Ethics",
       description:
-        "Address nonprofit-specific data privacy and ethical AI use concerns",
+        "Some participants seeking deeper critical analysis of AI's societal implications",
       actions: [
-        "Dedicate 20 minutes in Session 3 to data security",
-        "Create nonprofit AI ethics framework document",
-        "Share case studies of confidentiality best practices",
-        "Invite legal/compliance expert for Q&A",
+        "Include diverse viewpoints on AI ethics (not just implementation)",
+        "Discuss AI's environmental impact and mitigation strategies",
+        "Explore power dynamics and equity issues in AI adoption",
+        "Share critical scholarship on AI in nonprofit sector",
       ],
-      impact: "Critical for nonprofit organizations handling sensitive data",
+      impact: "Addresses Session 3 request for more critical perspectives",
+    },
+    {
+      priority: "Medium",
+      category: "Resources",
+      title: "Consolidate and Clarify Resources",
+      description:
+        "Participants struggling with acronym/resource overload - simplify and organize",
+      actions: [
+        "Create single-page cheat sheet of all frameworks (TRACE, COMPAS, CRAFT, etc.)",
+        "Reduce number of tools introduced per session",
+        "Use consistent naming conventions across tools",
+        "Build visual relationship map of how frameworks connect",
+      ],
+      impact: "Session 3: Confusion about multiple COMPAS-related acronyms",
     },
     {
       priority: "Low",
-      category: "Resources",
-      title: "Improve Resource Organization",
+      category: "Practical Implementation",
+      title: "Provide Step-by-Step Implementation Guides",
       description:
-        "Make it easier for participants to capture and access shared materials",
+        "Some participants want more concrete how-to guidance for specific tasks",
       actions: [
-        "Create a centralized resource hub webpage",
-        "Send pre-session emails with all links",
-        "Provide downloadable resource packets",
-        "Build a searchable knowledge base",
+        "Create tutorial: 'Building a Finance Report from Multiple Spreadsheets'",
+        "Develop workflow diagrams for common nonprofit AI use cases",
+        "Offer optional 'office hours' for implementation questions",
+        "Share templates and starter prompts for specific tasks",
       ],
-      impact: "Reduces stress about missing important information",
+      impact: "Addresses Session 3 feedback about implementation confusion",
     },
   ];
 
@@ -118,11 +132,11 @@ const RecommendationsSection: React.FC = () => {
           <h2 className="text-xl font-bold mb-4">Priority Overview</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center">
-              <div className="text-3xl font-bold text-red-600">2</div>
+              <div className="text-3xl font-bold text-red-600">3</div>
               <p className="text-sm text-gray-600">High Priority</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-600">3</div>
+              <div className="text-3xl font-bold text-yellow-600">4</div>
               <p className="text-sm text-gray-600">Medium Priority</p>
             </div>
             <div className="text-center">
@@ -191,39 +205,39 @@ const RecommendationsSection: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center">
               <div className="w-32 font-semibold text-right pr-4">
-                Before Session 3
+                Before Session 4
               </div>
               <div className="flex-1 bg-red-100 rounded p-3">
                 <ul className="text-sm space-y-1">
-                  <li>• Create and share AI basics primer</li>
-                  <li>• Poll participants about session length preference</li>
-                  <li>• Organize resource hub</li>
+                  <li>• Create consolidated framework cheat sheet</li>
+                  <li>• Survey participants on priority topics</li>
+                  <li>• Reduce streaming lag for chat</li>
                 </ul>
               </div>
             </div>
 
             <div className="flex items-center">
               <div className="w-32 font-semibold text-right pr-4">
-                Sessions 3-4
+                Sessions 4-5
               </div>
               <div className="flex-1 bg-yellow-100 rounded p-3">
                 <ul className="text-sm space-y-1">
-                  <li>• Test extended session format</li>
-                  <li>• Implement structured Q&A segments</li>
-                  <li>• Include dedicated security/ethics discussion</li>
+                  <li>• Continue refined chat approach from Session 3</li>
+                  <li>• Limit to 2-3 key concepts per session</li>
+                  <li>• Include environmental/critical perspectives</li>
                 </ul>
               </div>
             </div>
 
             <div className="flex items-center">
               <div className="w-32 font-semibold text-right pr-4">
-                Sessions 5-6
+                Session 6 & Beyond
               </div>
               <div className="flex-1 bg-green-100 rounded p-3">
                 <ul className="text-sm space-y-1">
-                  <li>• Refine based on mid-course feedback</li>
-                  <li>• Launch supplementary video content</li>
-                  <li>• Evaluate effectiveness of changes</li>
+                  <li>• Launch step-by-step implementation guides</li>
+                  <li>• Create AI basics primer for future cohorts</li>
+                  <li>• Evaluate effectiveness of all changes</li>
                 </ul>
               </div>
             </div>
@@ -234,13 +248,14 @@ const RecommendationsSection: React.FC = () => {
         <section className="bg-gradient-to-r from-primary to-accent text-white rounded-lg shadow-xl p-8 mt-12">
           <h2 className="text-2xl font-bold mb-4">Next Steps</h2>
           <p className="mb-4">
-            Based on the feedback analysis, we recommend prioritizing the pacing
-            and session length adjustments first, as these address the most
-            frequently mentioned concerns.
+            Session 3 showed significant improvements in pacing and chat management.
+            Continue these successful approaches while addressing new concerns about
+            topic depth, resource consolidation, and practical implementation guidance.
           </p>
           <p className="font-semibold">
-            Key Success Metric: Increase feedback response rate to 67%+ by
-            Session 4 through implementation of these improvements.
+            Key Success Metrics: Maintain improved pacing satisfaction while ensuring
+            audience-prioritized topics receive adequate time and reducing resource
+            confusion.
           </p>
         </section>
       </div>

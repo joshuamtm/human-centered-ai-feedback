@@ -29,10 +29,14 @@ const Dashboard: React.FC = () => {
   const sessions = Array.from(sessionSet).sort();
   const totalSessions = sessions.length;
 
+  // Constants
+  const ATTENDEES_PER_SESSION = 150;
+  const totalPossibleResponses = totalSessions * ATTENDEES_PER_SESSION;
+
   // Calculate metrics per session
   const getSessionMetrics = (sessionNum: number) => {
     const entries = processedData.filter((d) => d.session === sessionNum);
-    const responseRate = (entries.length / 150) * 100; // Assuming 150 total attendees per session
+    const responseRate = (entries.length / ATTENDEES_PER_SESSION) * 100;
     const avgRating =
       entries.length > 0
         ? entries.reduce((sum, entry) => sum + entry.rating, 0) / entries.length
@@ -178,10 +182,10 @@ const Dashboard: React.FC = () => {
               Overall Response Rate
             </h3>
             <p className="text-3xl font-bold text-primary">
-              {((processedData.length / 300) * 100).toFixed(1)}%
+              {((processedData.length / totalPossibleResponses) * 100).toFixed(1)}%
             </p>
             <p className="text-xs text-gray-500 mt-1">
-              {processedData.length} of ~300 total
+              {processedData.length} of {totalPossibleResponses} total
             </p>
           </div>
 
