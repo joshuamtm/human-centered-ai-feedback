@@ -1,20 +1,25 @@
 import React from 'react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { allFeedbackData, calculateSentiment } from '../data/sessionData';
+import { allFeedbackData, calculateSentiment, sessionTitles } from '../data/sessionData';
 
 const Dashboard: React.FC = () => {
   // Process data with sentiment
   const processedData = allFeedbackData.map(calculateSentiment);
 
-  // Calculate metrics for Session 1
-  const session1Entries = processedData.filter(d => d.session === 1);
-  const session1ResponseRate = (session1Entries.length / 150) * 100; // Assuming 150 total attendees
-  const session1AvgRating = session1Entries.reduce((sum, entry) => sum + entry.rating, 0) / session1Entries.length;
+  // Get unique sessions
+  const sessionSet = new Set(processedData.map(d => d.session));
+  const sessions = Array.from(sessionSet).sort();
+  const totalSessions = sessions.length;
 
-  // Calculate metrics for Session 2
-  const session2Entries = processedData.filter(d => d.session === 2);
-  const session2ResponseRate = (session2Entries.length / 150) * 100;
-  const session2AvgRating = session2Entries.reduce((sum, entry) => sum + entry.rating, 0) / session2Entries.length;
+  // Calculate metrics per session
+  const getSessionMetrics = (sessionNum: number) => {
+    const entries = processedData.filter(d => d.session === sessionNum);
+    const responseRate = (entries.length / 150) * 100; // Assuming 150 total attendees per session
+    const avgRating = entries.length > 0
+      ? entries.reduce((sum, entry) => sum + entry.rating, 0) / entries.length
+      : 0;
+    return { entries, responseRate, avgRating };
+  };
 
   // Rating distribution data
   const getRatingDistribution = (sessionNum: number) => {
@@ -39,10 +44,14 @@ const Dashboard: React.FC = () => {
   };
 
   // Week over week comparison
-  const weekComparison = [
-    { week: 'Session 1', avgRating: session1AvgRating, responseRate: session1ResponseRate },
-    { week: 'Session 2', avgRating: session2AvgRating, responseRate: session2ResponseRate },
-  ];
+  const weekComparison = sessions.map(sessionNum => {
+    const { avgRating, responseRate } = getSessionMetrics(sessionNum);
+    return {
+      week: `Session ${sessionNum}`,
+      avgRating,
+      responseRate
+    };
+  });
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
@@ -117,7 +126,7 @@ const Dashboard: React.FC = () => {
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-sm font-medium text-gray-500 mb-2">Total Responses</h3>
             <p className="text-3xl font-bold text-blue-600">{processedData.length}</p>
-            <p className="text-xs text-gray-500 mt-1">Across 2 sessions</p>
+            <p className="text-xs text-gray-500 mt-1">Across {totalSessions} session{totalSessions !== 1 ? 's' : ''}</p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
@@ -164,121 +173,70 @@ const Dashboard: React.FC = () => {
 
         {/* Session Details */}
         <div className="space-y-12">
-          {/* Session 1 */}
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Session 1: Introduction & Context</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-lg font-semibold mb-4">Rating Distribution</h3>
-                <ResponsiveContainer width="100%" height={250}>
-                  <BarChart data={getRatingDistribution(1)}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="rating" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="count" fill="#1ab1d2" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+          {sessions.map((sessionNum) => {
+            const { entries, responseRate, avgRating } = getSessionMetrics(sessionNum);
+            const sessionTitle = sessionTitles[sessionNum] || `Session ${sessionNum}`;
 
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-lg font-semibold mb-4">Sentiment Analysis</h3>
-                <ResponsiveContainer width="100%" height={250}>
-                  <PieChart>
-                    <Pie
-                      data={getSentimentDistribution(1)}
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      dataKey="value"
-                      label
-                    >
-                      {getSentimentDistribution(1).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
+            return (
+              <div key={sessionNum}>
+                <h2 className="text-2xl font-bold mb-2">Session {sessionNum}</h2>
+                <p className="text-lg text-gray-600 mb-6">{sessionTitle}</p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  <div className="bg-white rounded-lg shadow p-6">
+                    <h3 className="text-lg font-semibold mb-4">Rating Distribution</h3>
+                    <ResponsiveContainer width="100%" height={250}>
+                      <BarChart data={getRatingDistribution(sessionNum)}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="rating" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="count" fill="#1ab1d2" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
 
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-lg font-semibold mb-4">Key Metrics</h3>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-sm text-gray-500">Response Rate</p>
-                    <p className="text-2xl font-bold text-primary">{session1ResponseRate.toFixed(1)}%</p>
+                  <div className="bg-white rounded-lg shadow p-6">
+                    <h3 className="text-lg font-semibold mb-4">Sentiment Analysis</h3>
+                    <ResponsiveContainer width="100%" height={250}>
+                      <PieChart>
+                        <Pie
+                          data={getSentimentDistribution(sessionNum)}
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={80}
+                          dataKey="value"
+                          label
+                        >
+                          {getSentimentDistribution(sessionNum).map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Average Rating</p>
-                    <p className="text-2xl font-bold text-accent">{session1AvgRating.toFixed(2)}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Total Responses</p>
-                    <p className="text-2xl font-bold text-blue-600">{session1Entries.length}</p>
+
+                  <div className="bg-white rounded-lg shadow p-6">
+                    <h3 className="text-lg font-semibold mb-4">Key Metrics</h3>
+                    <div className="space-y-4">
+                      <div>
+                        <p className="text-sm text-gray-500">Response Rate</p>
+                        <p className="text-2xl font-bold text-primary">{responseRate.toFixed(1)}%</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">Average Rating</p>
+                        <p className="text-2xl font-bold text-accent">{avgRating.toFixed(2)}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">Total Responses</p>
+                        <p className="text-2xl font-bold text-blue-600">{entries.length}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Session 2 */}
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Session 2: Practical Application</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-lg font-semibold mb-4">Rating Distribution</h3>
-                <ResponsiveContainer width="100%" height={250}>
-                  <BarChart data={getRatingDistribution(2)}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="rating" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="count" fill="#1ab1d2" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-lg font-semibold mb-4">Sentiment Analysis</h3>
-                <ResponsiveContainer width="100%" height={250}>
-                  <PieChart>
-                    <Pie
-                      data={getSentimentDistribution(2)}
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      dataKey="value"
-                      label
-                    >
-                      {getSentimentDistribution(2).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-lg font-semibold mb-4">Key Metrics</h3>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-sm text-gray-500">Response Rate</p>
-                    <p className="text-2xl font-bold text-primary">{session2ResponseRate.toFixed(1)}%</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Average Rating</p>
-                    <p className="text-2xl font-bold text-accent">{session2AvgRating.toFixed(2)}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Total Responses</p>
-                    <p className="text-2xl font-bold text-blue-600">{session2Entries.length}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </div>

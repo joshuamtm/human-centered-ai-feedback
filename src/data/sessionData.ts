@@ -7,6 +7,15 @@ export interface FeedbackEntry {
   sentimentScore?: number;
 }
 
+export const sessionTitles: Record<number, string> = {
+  1: "The Current State of AI – Where We Are and How We Got Here",
+  2: "What You Can Do with AI Right Now (No Expertise Required)",
+  3: "Ethics, Implications, and Disruptions of AI",
+  4: "Advanced Uses - AI Packages, Next Level Analysis and AI Efficiencies",
+  5: "The Next Frontier is Here - Vibe Coding, AI Agents, Automation",
+  6: "Building Continuous AI Capacity at Your Organization"
+};
+
 export const session1Data: FeedbackEntry[] = [
   { id: 1, session: 1, rating: 3, comment: "I thought it was a great first session. I am excited about how to apply these principles specifically to not for profits." },
   { id: 2, session: 1, rating: 4, comment: "I feel much more interested in AI in general now!" },
@@ -131,8 +140,65 @@ export const session2Data: FeedbackEntry[] = [
   { id: 118, session: 2, rating: 4, comment: "Loved how pragmatic it was--will immediatly apply what I learned!" }
 ];
 
+export const session3Data: FeedbackEntry[] = [
+  { id: 119, session: 3, rating: 4, comment: "Very good explanation on ethics issues and approaches. Extremely helpful to our organization!" },
+  { id: 120, session: 3, rating: 3, comment: "Josh and Kim do a great job of providing supporting resources -- thank you!" },
+  { id: 121, session: 3, rating: 4, comment: "" },
+  { id: 122, session: 3, rating: 1, comment: "It felt like the topics the audience really wanted to dive into didn't get the time needed for adequate coverage. There was a noticiable delay between chat and live conversation. Seemed like the presenters missed important content. For example several people shared their AI objectives but were completely missed by the presenters. Totally didn't get the point of the Concern, Influence, Control circles. So far this session was the least helpful." },
+  { id: 123, session: 3, rating: 4, comment: "Looking forward to trying the Trolly tool. Enjoyed the pace and variety, with video and interaction with a learner." },
+  { id: 124, session: 3, rating: 4, comment: "I was away so I missed the first two sessions but jumping in on week 3 it was still easy to follow. The presentation was good and the extra tools are interesting. Looking forward to reviewing the first two sessions and catching up!" },
+  { id: 125, session: 3, rating: 3, comment: "Interesting to see that accuracy and privacy still are key problems when using AI." },
+  { id: 126, session: 3, rating: 4, comment: "" },
+  { id: 127, session: 3, rating: 4, comment: "This is very important information.Bieng aware of privacy and Bias is crucial." },
+  { id: 128, session: 3, rating: 4, comment: "" },
+  { id: 129, session: 3, rating: 4, comment: "I really enjoyed the 3rd session it was thoughtful" },
+  { id: 130, session: 3, rating: 4, comment: "very thought provoking, many things I want to share with our team" },
+  { id: 131, session: 3, rating: 4, comment: "The pace was much more manageable for me, thank you!" },
+  { id: 132, session: 3, rating: 2, comment: "Pacing was better. Thank you! I'm still hoping you'll address how to use AI to reduce environmental impacts during use. Environmentalists already do not eat hamburgers or drive cars, so they cannot offset their use. For example, I've read that different types/styles of prompts can make a difference in reducing energy use, even if small. I'll also try to put this in the community." },
+  { id: 133, session: 3, rating: 3, comment: "Interesting to use AI to decide if I should use AI. :-)" },
+  { id: 134, session: 3, rating: 3, comment: "Not as many resources or examples given. Still a helpful and informative session though" },
+  { id: 135, session: 3, rating: 3, comment: "" },
+  { id: 136, session: 3, rating: 4, comment: "Pacing was better - thank you! Helping framing of these thorny issues. Appreciate the video and the tools you created, shared, and demonstrated" },
+  { id: 137, session: 3, rating: 3, comment: "" },
+  { id: 138, session: 3, rating: 3, comment: "Because we are in the infant stages of looking at AI adoption it gave us a good methodology to where to start and what we should be looking at." },
+  { id: 139, session: 3, rating: 4, comment: "The prompt tools are giving me a better understanding on how to think through what I'm asking AI to do for me." },
+  { id: 140, session: 3, rating: 2, comment: "I still don't know how to use AI. There are examples of how to use it - grant prospecting, report creation, etc. I have no idea how to actually make, like a finance report from information for several spreadsheets." },
+  { id: 141, session: 3, rating: 4, comment: "Thank you for not engaging with the chat during the session and waiting until the end to answer questions. It was so much easier to follow along and understand. Great tools. Thank you" },
+  { id: 142, session: 3, rating: 4, comment: "apps are great, appreciate the emphasis on the grey area and the need to still use your brain" },
+  { id: 143, session: 3, rating: 3, comment: "The trolley problem app looks like a pretty useful tool to bring back to my organization. I like the ability to assess the impact of using AI on our org." },
+  { id: 144, session: 3, rating: 4, comment: "" },
+  { id: 145, session: 3, rating: 3, comment: "" },
+  { id: 146, session: 3, rating: 4, comment: "" },
+  { id: 147, session: 3, rating: 3, comment: "Always really helpful to be reminded about ethics - Trolley problem is memorable - a little theoretical, but good stuff" },
+  { id: 148, session: 3, rating: 2, comment: "I was hoping for more critical perspectives regarding the ethics of AI" },
+  { id: 149, session: 3, rating: 4, comment: "" },
+  { id: 150, session: 3, rating: 4, comment: "" },
+  { id: 151, session: 3, rating: 3, comment: "" },
+  { id: 152, session: 3, rating: 4, comment: "Great job, thank you!" },
+  { id: 153, session: 3, rating: 0, comment: "I found this one a little slower." },
+  { id: 154, session: 3, rating: 3, comment: "Really enjoying the real-world examples, but I'm having a hard time keeping track of all the resources and acronyms - why are there so many different ones that have to do with COMPAS? It's confusing." },
+  { id: 155, session: 3, rating: 3, comment: "good pace- looking forward to practicing with the app. I need more time to practice all the information...but that's a me problem!!!" },
+  { id: 156, session: 3, rating: 4, comment: "Pacing was better and I love the resources." },
+  { id: 157, session: 3, rating: 3, comment: "" },
+  { id: 158, session: 3, rating: 4, comment: "Good links for future use" },
+  { id: 159, session: 3, rating: 4, comment: "Excellent use cases, and demos. I love the thorough presentation of different topics and tools. Thanks." },
+  { id: 160, session: 3, rating: 3, comment: "Really great tools to guide future decision making!" },
+  { id: 161, session: 3, rating: 3, comment: "" },
+  { id: 162, session: 3, rating: 4, comment: "great job with terrific examples" },
+  { id: 163, session: 3, rating: 4, comment: "" },
+  { id: 164, session: 3, rating: 3, comment: "" },
+  { id: 165, session: 3, rating: 4, comment: "" },
+  { id: 166, session: 3, rating: 4, comment: "" },
+  { id: 167, session: 3, rating: 4, comment: "" },
+  { id: 168, session: 3, rating: 3, comment: "" },
+  { id: 169, session: 3, rating: 4, comment: "Very informative" },
+  { id: 170, session: 3, rating: 2, comment: "No" },
+  { id: 171, session: 3, rating: 3, comment: "" },
+  { id: 172, session: 3, rating: 4, comment: "" }
+];
+
 // Combine all data
-export const allFeedbackData = [...session1Data, ...session2Data];
+export const allFeedbackData = [...session1Data, ...session2Data, ...session3Data];
 
 // Calculate sentiment based on rating and comment keywords
 export function calculateSentiment(entry: FeedbackEntry): FeedbackEntry {
