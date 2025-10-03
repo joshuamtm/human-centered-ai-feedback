@@ -1,59 +1,65 @@
-import React from 'react';
-import { allFeedbackData, calculateSentiment } from '../data/sessionData';
+import React from "react";
+import { allFeedbackData, calculateSentiment } from "../data/sessionData";
 
 const InsightsSection: React.FC = () => {
   // Process data with sentiment
   const processedData = allFeedbackData.map(calculateSentiment);
-  const dataWithComments = processedData.filter(d => d.comment.length > 0);
+  const dataWithComments = processedData.filter((d) => d.comment.length > 0);
 
   // Key themes from Session 1
   const session1Themes = {
     positive: [
-      'Strong foundational content and context setting',
-      'Excitement about nonprofit-specific AI applications',
-      'Appreciated visuals and metaphors for understanding',
-      'Community interaction and peer learning valued',
-      'Instructors demonstrate expertise and accessibility'
+      "Strong foundational content and context setting",
+      "Excitement about nonprofit-specific AI applications",
+      "Appreciated visuals and metaphors for understanding",
+      "Community interaction and peer learning valued",
+      "Instructors demonstrate expertise and accessibility",
     ],
     concerns: [
-      'Pace too fast for beginners (mentioned 8+ times)',
-      'Chat functionality distracting for some learners',
-      'Technical issues with buffering/connectivity',
-      'Some concepts glossed over too quickly',
-      'Difficulty collecting resources in real-time'
-    ]
+      "Pace too fast for beginners (mentioned 8+ times)",
+      "Chat functionality distracting for some learners",
+      "Technical issues with buffering/connectivity",
+      "Some concepts glossed over too quickly",
+      "Difficulty collecting resources in real-time",
+    ],
   };
 
   // Key themes from Session 2
   const session2Themes = {
     positive: [
-      'Practical tools and hands-on demos highly valued',
-      'TRACE, COMPAS, CRAFT frameworks resonating well',
-      'Improved question tracking from Session 1',
-      'Resources and links shared are useful',
-      'Real-world examples helping with understanding'
+      "Practical tools and hands-on demos highly valued",
+      "TRACE, COMPAS, CRAFT frameworks resonating well",
+      "Improved question tracking from Session 1",
+      "Resources and links shared are useful",
+      "Real-world examples helping with understanding",
     ],
     concerns: [
-      'Meta prompt demo moved too fast',
-      'Chat interruptions disrupting presentation flow',
-      'Confidentiality and security topics need more depth',
-      'Session length feels too short (1 hour)',
-      'Beginners still struggling with pace'
-    ]
+      "Meta prompt demo moved too fast",
+      "Chat interruptions disrupting presentation flow",
+      "Confidentiality and security topics need more depth",
+      "Session length feels too short (1 hour)",
+      "Beginners still struggling with pace",
+    ],
   };
 
   // Calculate key metrics
-  const session1Comments = dataWithComments.filter(d => d.session === 1);
-  const session2Comments = dataWithComments.filter(d => d.session === 2);
+  const session1Comments = dataWithComments.filter((d) => d.session === 1);
+  const session2Comments = dataWithComments.filter((d) => d.session === 2);
 
-  const session1Positive = session1Comments.filter(d => d.sentiment === 'positive').length;
-  const session2Positive = session2Comments.filter(d => d.sentiment === 'positive').length;
+  const session1Positive = session1Comments.filter(
+    (d) => d.sentiment === "positive",
+  ).length;
+  const session2Positive = session2Comments.filter(
+    (d) => d.sentiment === "positive",
+  ).length;
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Key Insights from Feedback</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            Key Insights from Feedback
+          </h1>
           <p className="text-lg text-gray-600">
             Actionable insights derived from participant comments and ratings
           </p>
@@ -64,7 +70,14 @@ const InsightsSection: React.FC = () => {
           <h2 className="text-2xl font-bold mb-4">Executive Summary</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <p className="text-3xl font-bold">{((session1Positive + session2Positive) / (session1Comments.length + session2Comments.length) * 100).toFixed(0)}%</p>
+              <p className="text-3xl font-bold">
+                {(
+                  ((session1Positive + session2Positive) /
+                    (session1Comments.length + session2Comments.length)) *
+                  100
+                ).toFixed(0)}
+                %
+              </p>
               <p className="text-sm opacity-90">Positive Sentiment Overall</p>
             </div>
             <div>
@@ -80,11 +93,15 @@ const InsightsSection: React.FC = () => {
 
         {/* Session 1 Insights */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Session 1: Introduction & Context</h2>
+          <h2 className="text-2xl font-bold mb-6">
+            Session 1: Introduction & Context
+          </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold mb-4 text-green-700">What's Working Well</h3>
+              <h3 className="text-lg font-semibold mb-4 text-green-700">
+                What's Working Well
+              </h3>
               <ul className="space-y-2">
                 {session1Themes.positive.map((theme, index) => (
                   <li key={index} className="flex items-start">
@@ -96,7 +113,9 @@ const InsightsSection: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold mb-4 text-orange-700">Areas for Improvement</h3>
+              <h3 className="text-lg font-semibold mb-4 text-orange-700">
+                Areas for Improvement
+              </h3>
               <ul className="space-y-2">
                 {session1Themes.concerns.map((concern, index) => (
                   <li key={index} className="flex items-start">
@@ -110,29 +129,40 @@ const InsightsSection: React.FC = () => {
 
           {/* Key Quotes from Session 1 */}
           <div className="bg-blue-50 rounded-lg p-6 mt-6">
-            <h3 className="font-semibold mb-3">Representative Feedback Reflecting Key Trends</h3>
+            <h3 className="font-semibold mb-3">
+              Representative Feedback Reflecting Key Trends
+            </h3>
             <div className="space-y-3">
               <div className="mb-3">
-                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Positive Impact</p>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Positive Impact
+                </p>
                 <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4">
                   "I feel much more interested in AI in general now!"
                 </blockquote>
                 <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4 mt-2">
-                  "I am excited about how to apply these principles specifically to not for profits."
+                  "I am excited about how to apply these principles specifically
+                  to not for profits."
                 </blockquote>
               </div>
 
               <div className="mb-3">
-                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Teaching Effectiveness</p>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Teaching Effectiveness
+                </p>
                 <blockquote className="italic text-gray-700 border-l-4 border-primary pl-4">
-                  "Great high level overview and context setting. Appreciated the visuals and metaphors to build understanding."
+                  "Great high level overview and context setting. Appreciated
+                  the visuals and metaphors to build understanding."
                 </blockquote>
               </div>
 
               <div>
-                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Common Challenge (Pacing)</p>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Common Challenge (Pacing)
+                </p>
                 <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4">
-                  "As an AI newby you glossed over some info I would have liked more time to absorb."
+                  "As an AI newby you glossed over some info I would have liked
+                  more time to absorb."
                 </blockquote>
                 <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4 mt-2">
                   "I'm very new to all of this, so it was pretty fast-paced."
@@ -144,11 +174,15 @@ const InsightsSection: React.FC = () => {
 
         {/* Session 2 Insights */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Session 2: Practical Application</h2>
+          <h2 className="text-2xl font-bold mb-6">
+            Session 2: Practical Application
+          </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold mb-4 text-green-700">What's Working Well</h3>
+              <h3 className="text-lg font-semibold mb-4 text-green-700">
+                What's Working Well
+              </h3>
               <ul className="space-y-2">
                 {session2Themes.positive.map((theme, index) => (
                   <li key={index} className="flex items-start">
@@ -160,7 +194,9 @@ const InsightsSection: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold mb-4 text-orange-700">Areas for Improvement</h3>
+              <h3 className="text-lg font-semibold mb-4 text-orange-700">
+                Areas for Improvement
+              </h3>
               <ul className="space-y-2">
                 {session2Themes.concerns.map((concern, index) => (
                   <li key={index} className="flex items-start">
@@ -174,32 +210,44 @@ const InsightsSection: React.FC = () => {
 
           {/* Key Quotes from Session 2 */}
           <div className="bg-blue-50 rounded-lg p-6 mt-6">
-            <h3 className="font-semibold mb-3">Representative Feedback Reflecting Key Trends</h3>
+            <h3 className="font-semibold mb-3">
+              Representative Feedback Reflecting Key Trends
+            </h3>
             <div className="space-y-3">
               <div className="mb-3">
-                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Practical Value</p>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Practical Value
+                </p>
                 <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4">
                   "I appreciated all the practical application tools and demos"
                 </blockquote>
                 <blockquote className="italic text-gray-700 border-l-4 border-green-500 pl-4 mt-2">
-                  "Loved how pragmatic it was--will immediately apply what I learned!"
+                  "Loved how pragmatic it was--will immediately apply what I
+                  learned!"
                 </blockquote>
               </div>
 
               <div className="mb-3">
-                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Framework Effectiveness</p>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Framework Effectiveness
+                </p>
                 <blockquote className="italic text-gray-700 border-l-4 border-primary pl-4">
-                  "I'm appreciating using TRACE to identify pain points, COMPAS to frame the goal and CRAFT to write a prompt"
+                  "I'm appreciating using TRACE to identify pain points, COMPAS
+                  to frame the goal and CRAFT to write a prompt"
                 </blockquote>
               </div>
 
               <div>
-                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">Session Length Concern</p>
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                  Session Length Concern
+                </p>
                 <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4">
-                  "I wish it was longer! It felt like we really got into a good flow and then next thing you know it was wrapping up!"
+                  "I wish it was longer! It felt like we really got into a good
+                  flow and then next thing you know it was wrapping up!"
                 </blockquote>
                 <blockquote className="italic text-gray-700 border-l-4 border-orange-500 pl-4 mt-2">
-                  "One thought is that 1 hour feels tight to get through everything without having to rush."
+                  "One thought is that 1 hour feels tight to get through
+                  everything without having to rush."
                 </blockquote>
               </div>
             </div>
@@ -234,9 +282,11 @@ const InsightsSection: React.FC = () => {
 
           <div className="mt-6 p-4 bg-yellow-50 rounded-lg">
             <p className="text-sm text-gray-700">
-              <strong>Key Finding:</strong> While experienced participants appreciate the pace and depth,
-              approximately 30% of learners (primarily AI beginners) are struggling to keep up with the
-              material, suggesting a need for differentiated learning paths or supplementary resources.
+              <strong>Key Finding:</strong> While experienced participants
+              appreciate the pace and depth, approximately 30% of learners
+              (primarily AI beginners) are struggling to keep up with the
+              material, suggesting a need for differentiated learning paths or
+              supplementary resources.
             </p>
           </div>
         </section>

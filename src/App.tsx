@@ -1,10 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import InsightsSection from './components/InsightsSection';
-import RecommendationsSection from './components/RecommendationsSection';
-import HowWeBuiltThis from './components/HowWeBuiltThis';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import InsightsSection from "./components/InsightsSection";
+import RecommendationsSection from "./components/RecommendationsSection";
+import HowWeBuiltThis from "./components/HowWeBuiltThis";
+import "./App.css";
 
 function App() {
   return (
@@ -16,7 +16,9 @@ function App() {
             <div className="flex justify-between h-16">
               <div className="flex space-x-8">
                 <div className="flex-shrink-0 flex items-center">
-                  <h1 className="text-xl font-bold text-primary">AI Course Feedback</h1>
+                  <h1 className="text-xl font-bold text-primary">
+                    AI Course Feedback
+                  </h1>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <Link

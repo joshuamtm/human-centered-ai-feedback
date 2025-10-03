@@ -1,55 +1,86 @@
-import React from 'react';
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { allFeedbackData, calculateSentiment, sessionTitles } from '../data/sessionData';
+import React from "react";
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import {
+  allFeedbackData,
+  calculateSentiment,
+  sessionTitles,
+} from "../data/sessionData";
 
 const Dashboard: React.FC = () => {
   // Process data with sentiment
   const processedData = allFeedbackData.map(calculateSentiment);
 
   // Get unique sessions
-  const sessionSet = new Set(processedData.map(d => d.session));
+  const sessionSet = new Set(processedData.map((d) => d.session));
   const sessions = Array.from(sessionSet).sort();
   const totalSessions = sessions.length;
 
   // Calculate metrics per session
   const getSessionMetrics = (sessionNum: number) => {
-    const entries = processedData.filter(d => d.session === sessionNum);
+    const entries = processedData.filter((d) => d.session === sessionNum);
     const responseRate = (entries.length / 150) * 100; // Assuming 150 total attendees per session
-    const avgRating = entries.length > 0
-      ? entries.reduce((sum, entry) => sum + entry.rating, 0) / entries.length
-      : 0;
+    const avgRating =
+      entries.length > 0
+        ? entries.reduce((sum, entry) => sum + entry.rating, 0) / entries.length
+        : 0;
     return { entries, responseRate, avgRating };
   };
 
   // Rating distribution data
   const getRatingDistribution = (sessionNum: number) => {
-    const entries = processedData.filter(d => d.session === sessionNum);
+    const entries = processedData.filter((d) => d.session === sessionNum);
     const distribution = [
-      { rating: '1', count: entries.filter(e => e.rating === 1).length },
-      { rating: '2', count: entries.filter(e => e.rating === 2).length },
-      { rating: '3', count: entries.filter(e => e.rating === 3).length },
-      { rating: '4', count: entries.filter(e => e.rating === 4).length },
+      { rating: "1", count: entries.filter((e) => e.rating === 1).length },
+      { rating: "2", count: entries.filter((e) => e.rating === 2).length },
+      { rating: "3", count: entries.filter((e) => e.rating === 3).length },
+      { rating: "4", count: entries.filter((e) => e.rating === 4).length },
     ];
     return distribution;
   };
 
   // Sentiment distribution
   const getSentimentDistribution = (sessionNum: number) => {
-    const entries = processedData.filter(d => d.session === sessionNum);
+    const entries = processedData.filter((d) => d.session === sessionNum);
     return [
-      { name: 'Positive', value: entries.filter(e => e.sentiment === 'positive').length, color: '#10b981' },
-      { name: 'Neutral', value: entries.filter(e => e.sentiment === 'neutral').length, color: '#f59e0b' },
-      { name: 'Negative', value: entries.filter(e => e.sentiment === 'negative').length, color: '#ef4444' },
+      {
+        name: "Positive",
+        value: entries.filter((e) => e.sentiment === "positive").length,
+        color: "#10b981",
+      },
+      {
+        name: "Neutral",
+        value: entries.filter((e) => e.sentiment === "neutral").length,
+        color: "#f59e0b",
+      },
+      {
+        name: "Negative",
+        value: entries.filter((e) => e.sentiment === "negative").length,
+        color: "#ef4444",
+      },
     ];
   };
 
   // Week over week comparison
-  const weekComparison = sessions.map(sessionNum => {
+  const weekComparison = sessions.map((sessionNum) => {
     const { avgRating, responseRate } = getSessionMetrics(sessionNum);
     return {
       week: `Session ${sessionNum}`,
       avgRating,
-      responseRate
+      responseRate,
     };
   });
 
@@ -67,38 +98,73 @@ const Dashboard: React.FC = () => {
 
         {/* Dashboard Explainer */}
         <section className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">📊 Welcome to Your Feedback Dashboard</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">
+            📊 Welcome to Your Feedback Dashboard
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-semibold text-gray-800 mb-2">What You'll Find Here</h3>
+              <h3 className="font-semibold text-gray-800 mb-2">
+                What You'll Find Here
+              </h3>
               <p className="text-sm text-gray-700 mb-3">
-                This dashboard transforms course evaluation data into actionable insights using AI-powered analysis.
-                Explore feedback from your peers, track course improvements, and discover learning patterns.
+                This dashboard transforms course evaluation data into actionable
+                insights using AI-powered analysis. Explore feedback from your
+                peers, track course improvements, and discover learning
+                patterns.
               </p>
 
-              <h3 className="font-semibold text-gray-800 mb-2">How to Navigate</h3>
+              <h3 className="font-semibold text-gray-800 mb-2">
+                How to Navigate
+              </h3>
               <ul className="text-sm text-gray-700 space-y-1">
-                <li>• <strong>Dashboard (You are here):</strong> Overview of ratings, response rates, and trends</li>
-                <li>• <strong>Insights:</strong> Discover key themes and patterns from qualitative analysis</li>
-                <li>• <strong>Recommendations:</strong> View prioritized improvements based on feedback</li>
-                <li>• <strong>How We Built This:</strong> Learn about the AI technology behind this dashboard</li>
+                <li>
+                  • <strong>Dashboard (You are here):</strong> Overview of
+                  ratings, response rates, and trends
+                </li>
+                <li>
+                  • <strong>Insights:</strong> Discover key themes and patterns
+                  from qualitative analysis
+                </li>
+                <li>
+                  • <strong>Recommendations:</strong> View prioritized
+                  improvements based on feedback
+                </li>
+                <li>
+                  • <strong>How We Built This:</strong> Learn about the AI
+                  technology behind this dashboard
+                </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold text-gray-800 mb-2">Quick Start Guide</h3>
+              <h3 className="font-semibold text-gray-800 mb-2">
+                Quick Start Guide
+              </h3>
               <ol className="text-sm text-gray-700 space-y-2">
-                <li><span className="font-semibold text-primary">1.</span> Review the metrics below for overall course health</li>
-                <li><span className="font-semibold text-primary">2.</span> Scroll down to see session-specific breakdowns</li>
-                <li><span className="font-semibold text-primary">3.</span> Visit "Insights" for AI-generated analysis and key quotes</li>
-                <li><span className="font-semibold text-primary">4.</span> Check "Recommendations" for improvement ideas</li>
+                <li>
+                  <span className="font-semibold text-primary">1.</span> Review
+                  the metrics below for overall course health
+                </li>
+                <li>
+                  <span className="font-semibold text-primary">2.</span> Scroll
+                  down to see session-specific breakdowns
+                </li>
+                <li>
+                  <span className="font-semibold text-primary">3.</span> Visit
+                  "Insights" for AI-generated analysis and key quotes
+                </li>
+                <li>
+                  <span className="font-semibold text-primary">4.</span> Check
+                  "Recommendations" for improvement ideas
+                </li>
               </ol>
 
               <div className="mt-3 p-3 bg-white rounded border border-gray-200">
                 <p className="text-xs text-gray-600">
-                  <strong>💡 Tip:</strong> Charts are interactive! Hover over data points for details.
-                  This dashboard updates after each session to show the latest feedback.
+                  <strong>💡 Tip:</strong> Charts are interactive! Hover over
+                  data points for details. This dashboard updates after each
+                  session to show the latest feedback.
                 </p>
               </div>
             </div>
@@ -108,34 +174,56 @@ const Dashboard: React.FC = () => {
         {/* Overall Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-2">Overall Response Rate</h3>
+            <h3 className="text-sm font-medium text-gray-500 mb-2">
+              Overall Response Rate
+            </h3>
             <p className="text-3xl font-bold text-primary">
               {((processedData.length / 300) * 100).toFixed(1)}%
             </p>
-            <p className="text-xs text-gray-500 mt-1">{processedData.length} of ~300 total</p>
+            <p className="text-xs text-gray-500 mt-1">
+              {processedData.length} of ~300 total
+            </p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-2">Average Rating</h3>
+            <h3 className="text-sm font-medium text-gray-500 mb-2">
+              Average Rating
+            </h3>
             <p className="text-3xl font-bold text-accent">
-              {(processedData.reduce((sum, e) => sum + e.rating, 0) / processedData.length).toFixed(2)}
+              {(
+                processedData.reduce((sum, e) => sum + e.rating, 0) /
+                processedData.length
+              ).toFixed(2)}
             </p>
             <p className="text-xs text-gray-500 mt-1">Out of 4.0</p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-2">Total Responses</h3>
-            <p className="text-3xl font-bold text-blue-600">{processedData.length}</p>
-            <p className="text-xs text-gray-500 mt-1">Across {totalSessions} session{totalSessions !== 1 ? 's' : ''}</p>
+            <h3 className="text-sm font-medium text-gray-500 mb-2">
+              Total Responses
+            </h3>
+            <p className="text-3xl font-bold text-blue-600">
+              {processedData.length}
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Across {totalSessions} session{totalSessions !== 1 ? "s" : ""}
+            </p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-2">Comments Provided</h3>
+            <h3 className="text-sm font-medium text-gray-500 mb-2">
+              Comments Provided
+            </h3>
             <p className="text-3xl font-bold text-purple-600">
-              {processedData.filter(e => e.comment.length > 0).length}
+              {processedData.filter((e) => e.comment.length > 0).length}
             </p>
             <p className="text-xs text-gray-500 mt-1">
-              {((processedData.filter(e => e.comment.length > 0).length / processedData.length) * 100).toFixed(0)}% with comments
+              {(
+                (processedData.filter((e) => e.comment.length > 0).length /
+                  processedData.length) *
+                100
+              ).toFixed(0)}
+              % with comments
             </p>
           </div>
         </div>
@@ -151,7 +239,13 @@ const Dashboard: React.FC = () => {
                 <YAxis domain={[1, 4]} />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="avgRating" stroke="#1ab1d2" strokeWidth={2} name="Average Rating" />
+                <Line
+                  type="monotone"
+                  dataKey="avgRating"
+                  stroke="#1ab1d2"
+                  strokeWidth={2}
+                  name="Average Rating"
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -165,7 +259,13 @@ const Dashboard: React.FC = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="responseRate" stroke="#f18f38" strokeWidth={2} name="Response Rate %" />
+                <Line
+                  type="monotone"
+                  dataKey="responseRate"
+                  stroke="#f18f38"
+                  strokeWidth={2}
+                  name="Response Rate %"
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -174,16 +274,22 @@ const Dashboard: React.FC = () => {
         {/* Session Details */}
         <div className="space-y-12">
           {sessions.map((sessionNum) => {
-            const { entries, responseRate, avgRating } = getSessionMetrics(sessionNum);
-            const sessionTitle = sessionTitles[sessionNum] || `Session ${sessionNum}`;
+            const { entries, responseRate, avgRating } =
+              getSessionMetrics(sessionNum);
+            const sessionTitle =
+              sessionTitles[sessionNum] || `Session ${sessionNum}`;
 
             return (
               <div key={sessionNum}>
-                <h2 className="text-2xl font-bold mb-2">Session {sessionNum}</h2>
+                <h2 className="text-2xl font-bold mb-2">
+                  Session {sessionNum}
+                </h2>
                 <p className="text-lg text-gray-600 mb-6">{sessionTitle}</p>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   <div className="bg-white rounded-lg shadow p-6">
-                    <h3 className="text-lg font-semibold mb-4">Rating Distribution</h3>
+                    <h3 className="text-lg font-semibold mb-4">
+                      Rating Distribution
+                    </h3>
                     <ResponsiveContainer width="100%" height={250}>
                       <BarChart data={getRatingDistribution(sessionNum)}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -196,7 +302,9 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   <div className="bg-white rounded-lg shadow p-6">
-                    <h3 className="text-lg font-semibold mb-4">Sentiment Analysis</h3>
+                    <h3 className="text-lg font-semibold mb-4">
+                      Sentiment Analysis
+                    </h3>
                     <ResponsiveContainer width="100%" height={250}>
                       <PieChart>
                         <Pie
@@ -207,9 +315,11 @@ const Dashboard: React.FC = () => {
                           dataKey="value"
                           label
                         >
-                          {getSentimentDistribution(sessionNum).map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
+                          {getSentimentDistribution(sessionNum).map(
+                            (entry, index) => (
+                              <Cell key={`cell-${index}`} fill={entry.color} />
+                            ),
+                          )}
                         </Pie>
                         <Tooltip />
                       </PieChart>
@@ -221,15 +331,21 @@ const Dashboard: React.FC = () => {
                     <div className="space-y-4">
                       <div>
                         <p className="text-sm text-gray-500">Response Rate</p>
-                        <p className="text-2xl font-bold text-primary">{responseRate.toFixed(1)}%</p>
+                        <p className="text-2xl font-bold text-primary">
+                          {responseRate.toFixed(1)}%
+                        </p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Average Rating</p>
-                        <p className="text-2xl font-bold text-accent">{avgRating.toFixed(2)}</p>
+                        <p className="text-2xl font-bold text-accent">
+                          {avgRating.toFixed(2)}
+                        </p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Total Responses</p>
-                        <p className="text-2xl font-bold text-blue-600">{entries.length}</p>
+                        <p className="text-2xl font-bold text-blue-600">
+                          {entries.length}
+                        </p>
                       </div>
                     </div>
                   </div>
